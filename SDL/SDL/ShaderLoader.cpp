@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "ShaderLoader.h"
 #include "FileLoader.h"
+#include <GL/glew.h>
 
 namespace
 {
@@ -36,6 +37,17 @@ namespace
 	{
 		auto vertexSource = GetFileContents("Shaders/" + vertexShader + ".vert");
 		auto fragmentSource = GetFileContents("Shaders/" + fragmentShader + ".frag");
+
+		auto vertexShaderID = CompileShader(vertexSource.c_str(), GL_VERTEX_SHADER);
+		auto fragmentShaderID = CompileShader(fragmentSource.c_str(), GL_FRAGMENT_SHADER);
+
+		auto shaderID = LinkProgram(vertexShaderID, fragmentShaderID);
+
+		glDeleteShader(vertexShaderID);
+		glDeleteShader(fragmentShaderID);
+
+		return shaderID;
+
 	}
 }
 
