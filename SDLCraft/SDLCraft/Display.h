@@ -8,7 +8,7 @@ public:
 
 	void Resize(int w, int h);
 	void Close();
-	void Update();
+	void Clear();
 	void ManageEvents();
 
 	SDL_Window& GetWindow() const;

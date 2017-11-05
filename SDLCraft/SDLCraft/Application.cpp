@@ -37,7 +37,7 @@ void Application::MainLoop() const
 		shader->StopProgram();
 
 		//Swap and Clear back buffer
-		m_display.Update();
+		m_display.Clear();
 		//Update time
 		Time::Tick();
 	}

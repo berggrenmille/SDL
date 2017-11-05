@@ -44,7 +44,7 @@ bool Display::Initialize()
 	SetOpenGLAttributes();
 
 	// Init GLEW
-	const GLenum error = glewInit();
+	GLenum error = glewInit();
 	if (error == GLEW_OK)
 	{
 		printf("GLEW Status : %s\n", glewGetErrorString(error));
@@ -55,7 +55,7 @@ bool Display::Initialize()
 		printf("GLEW Status : %s\n", glewGetErrorString(error));
 		return false;
 	}
-	Resize(WIDTH,HEIGHT);
+	glViewport(0, 0, WIDTH,HEIGHT);
 	return true;
 }
 
@@ -88,8 +88,7 @@ void Display::ManageEvents()
 	SDL_Event e;
 	while (SDL_PollEvent(&e) != 0)
 	{
-		if (e.type == SDL_QUIT || (e
-			.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE)) //Exit program
+		if (e.type == SDL_QUIT || e.key.keysym.sym == SDLK_ESCAPE) //Exit program
 			Close();
 		if (e.window.event == SDL_WINDOWEVENT_RESIZED)
 		{
@@ -102,10 +101,10 @@ void Display::ManageEvents()
 	}
 }
 
-void Display::Update()
+void Display::Clear()
 {
 	SDL_GL_SwapWindow(window);
-	glClearColor(0.1f, 0.0f, 0.0f, 1.0f);
+	glClearColor(1.0, 0.0, 0.1, 1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
