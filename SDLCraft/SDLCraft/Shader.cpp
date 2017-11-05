@@ -15,7 +15,7 @@ void Shader::LoadInt(GLuint location, int value)
 {
 	glUniform1i(location, value);
 }
-void Shader::LoadFloat(GLuint location, int value)
+void Shader::LoadFloat(GLuint location, float value)
 {
 	glUniform1f(location, value);
 }
@@ -48,7 +48,7 @@ Shader::~Shader()
 	glDeleteProgram(m_programID);
 }
 
-void Shader::UseProgram() const //Check id
+void Shader::UseProgram() const
 {
 	glUseProgram(m_programID);
 }

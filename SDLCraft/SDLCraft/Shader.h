@@ -12,7 +12,7 @@ public:
 	void StopProgram() const;
 
 	void LoadInt(GLuint location, int value);
-	void LoadFloat(GLuint location, int value);
+	void LoadFloat(GLuint location, float value);
 
 	void LoadVector2(GLuint location, const Vector2& vect);
 	void LoadVector3(GLuint location, const Vector3& vect);

@@ -31,6 +31,7 @@ void Application::MainLoop() const
 	TestShader* shader = new TestShader();
 	while (m_display.IsOpen())
 	{
+		rect = mLoader.LoadToVAO(vertices, indices);
 		m_display.ManageEvents();
 		shader->UseProgram();
 		m_renderer.Render(rect);
