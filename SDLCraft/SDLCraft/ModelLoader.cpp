@@ -1,11 +1,12 @@
 #include "stdafx.h"
 #include "ModelLoader.h"
 
-Model ModelLoader::LoadToVAO(std::vector<float> positions, std::vector<int> indices)
+Model ModelLoader::LoadToVAO(std::vector<float> positions, std::vector<int> indices, std::vector<float> color)
 {
 	int vaoID = CreateVAO();
 	BindIndicesBuffer(indices);
 	StoreDatainAttributeList(0, positions);
+	StoreDatainAttributeList(1, color);
 	UnbindVAO();
 	return Model(vaoID, indices.size());
 }

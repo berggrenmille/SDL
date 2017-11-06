@@ -25,14 +25,21 @@ void Application::MainLoop() const
 	{
 		0,1,2
 	};
+	std::vector<float> color =
+	{
+		1.0f,0,0,
+		0,1.0f,0,
+		0,0,1.0f
+	};
 	ModelLoader mLoader;
-	Model rect = mLoader.LoadToVAO(vertices, indices);
+	Model rect = mLoader.LoadToVAO(vertices, indices, color);
 	TestShader shader = TestShader();
+	
 	while (m_display.IsOpen())
 	{
 		m_display.ManageEvents();
-		shader.UseProgram();
-		shader.LoadFloat(shader.m_locSinTime, sin(Time::time));
+		shader.UseProgram();	
+		shader.LoadFloat(shader.m_locTime, Time::time);
 		m_renderer.Render(rect);
 		shader.StopProgram();
 

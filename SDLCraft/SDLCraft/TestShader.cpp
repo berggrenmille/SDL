@@ -5,17 +5,18 @@ TestShader::TestShader(const std::string& VERTEX_FILE, const std::string& FRAGME
 	: Shader(VERTEX_FILE,FRAGMENT_FILE)
 {
 	GetUniforms();
-}
+}		
 
 void TestShader::BindAttributes()
 {
 	BindAttribute(0, "position");
+	BindAttribute(1, "color");
 }
 
 void TestShader::GetUniforms()
 {
 	UseProgram();
-	m_locSinTime = glGetUniformLocation(m_programID, "sinTime");
+	m_locTime = glGetUniformLocation(m_programID, "time");
 	StopProgram();
 }
 

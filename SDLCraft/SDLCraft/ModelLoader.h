@@ -7,7 +7,7 @@ class ModelLoader
 {
 public:
 	void Cleanup();
-	Model LoadToVAO(std::vector<float> positions, std::vector<int> indices);
+	Model LoadToVAO(std::vector<float> positions, std::vector<int> indices, std::vector<float> colours);
 private:
 	int CreateVAO();
 	void UnbindVAO();

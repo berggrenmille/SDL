@@ -23,6 +23,7 @@ public:
 protected:
 	virtual void BindAttributes() = 0;
 	void BindAttribute(int attribute, const std::string& varName);
+
 	virtual void GetUniforms() = 0;
 	GLuint m_programID;
 };
