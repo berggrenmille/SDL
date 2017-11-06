@@ -11,37 +11,35 @@ Application::Application(Display& display, Renderer& renderer)
 	MainLoop();
 }
 
-std::vector<float> vertices =
-{
-	-0.5f,0.5f,0,
-	-0.5f,-0.5f,0,
-	0.5f,-0.5f,0,
-	0.5f,0.5f,0
-};
-std::vector<int> indices =
-{
-	0,1,3,
-	3,1,2
-};
+
 
 void Application::MainLoop() const
 {
+	std::vector<float> vertices =
+	{
+		0,0.5f,0,
+		-0.5f,-0.5f,0,
+		0.5f,-0.5f,0
+	};
+	std::vector<int> indices =
+	{
+		0,1,2
+	};
 	ModelLoader mLoader;
 	Model rect = mLoader.LoadToVAO(vertices, indices);
-	TestShader* shader = new TestShader();
+	TestShader shader = TestShader();
 	while (m_display.IsOpen())
 	{
-		rect = mLoader.LoadToVAO(vertices, indices);
 		m_display.ManageEvents();
-		shader->UseProgram();
+		shader.UseProgram();
+		shader.LoadFloat(shader.m_locSinTime, sin(Time::time));
 		m_renderer.Render(rect);
-		shader->StopProgram();
+		shader.StopProgram();
 
 		//Swap and Clear back buffer
 		m_display.Clear();
 		//Update time
 		Time::Tick();
 	}
-	delete shader;
 }
 

@@ -89,12 +89,12 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Iceklue\Documents\_Github\C++\SDL\SDLCraft\SDLCraft\Libs\SDL2-2.0.7\include;C:\Users\Iceklue\Documents\_Github\C++\SDL\SDLCraft\SDLCraft\Libs\glew-2.1.0\include;C:\Users\bergg\Documents\Github\C++\SDL\SDLCraft\SDLCraft\Libs\glew-2.1.0\include;C:\Users\bergg\Documents\Github\C++\SDL\SDLCraft\SDLCraft\Libs\SDL2-2.0.7\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Iceklue\Documents\_Github\C++\SDL\SDLCraft\SDLCraft\Libs\SDL2-2.0.7\include;C:\Users\Iceklue\Documents\_Github\C++\SDL\SDLCraft\SDLCraft\Libs\glew-2.1.0\include;C:\Users\bergg\Documents\Github\C++\SDL\SDLCraft\SDLCraft\Libs\glew-2.1.0\include;C:\Users\bergg\Documents\Github\C++\SDL\SDLCraft\SDLCraft\Libs\SDL2-2.0.7\include;C:\Users\Marie\Documents\Github\C++\SDL\SDLCraft\SDLCraft\Libs\glew-2.1.0\include;C:\Users\Marie\Documents\Github\C++\SDL\SDLCraft\SDLCraft\Libs\SDL2-2.0.7\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Iceklue\Documents\_Github\C++\SDL\SDLCraft\SDLCraft\Libs\SDL2-2.0.7\lib\x86;C:\Users\Iceklue\Documents\_Github\C++\SDL\SDLCraft\SDLCraft\Libs\glew-2.1.0\lib\Release\Win32;C:\Users\bergg\Documents\Github\C++\SDL\SDLCraft\SDLCraft\Libs\glew-2.1.0\lib\Release\Win32;C:\Users\bergg\Documents\Github\C++\SDL\SDLCraft\SDLCraft\Libs\SDL2-2.0.7\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Iceklue\Documents\_Github\C++\SDL\SDLCraft\SDLCraft\Libs\SDL2-2.0.7\lib\x86;C:\Users\Iceklue\Documents\_Github\C++\SDL\SDLCraft\SDLCraft\Libs\glew-2.1.0\lib\Release\Win32;C:\Users\bergg\Documents\Github\C++\SDL\SDLCraft\SDLCraft\Libs\glew-2.1.0\lib\Release\Win32;C:\Users\bergg\Documents\Github\C++\SDL\SDLCraft\SDLCraft\Libs\SDL2-2.0.7\lib\x86;C:\Users\Marie\Documents\Github\C++\SDL\SDLCraft\SDLCraft\Libs\glew-2.1.0\lib\Release\Win32;C:\Users\Marie\Documents\Github\C++\SDL\SDLCraft\SDLCraft\Libs\SDL2-2.0.7\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -120,14 +120,14 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Iceklue\Documents\_Github\C++\SDL\SDLCraft\SDLCraft\Libs\SDL2-2.0.7\include;C:\Users\Iceklue\Documents\_Github\C++\SDL\SDLCraft\SDLCraft\Libs\glew-2.1.0\include;C:\Users\bergg\Documents\Github\C++\SDL\SDLCraft\SDLCraft\Libs\glew-2.1.0\include;C:\Users\bergg\Documents\Github\C++\SDL\SDLCraft\SDLCraft\Libs\SDL2-2.0.7\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Iceklue\Documents\_Github\C++\SDL\SDLCraft\SDLCraft\Libs\SDL2-2.0.7\include;C:\Users\Iceklue\Documents\_Github\C++\SDL\SDLCraft\SDLCraft\Libs\glew-2.1.0\include;C:\Users\bergg\Documents\Github\C++\SDL\SDLCraft\SDLCraft\Libs\glew-2.1.0\include;C:\Users\bergg\Documents\Github\C++\SDL\SDLCraft\SDLCraft\Libs\SDL2-2.0.7\include;C:\Users\Marie\Documents\Github\C++\SDL\SDLCraft\SDLCraft\Libs\glew-2.1.0\include;C:\Users\Marie\Documents\Github\C++\SDL\SDLCraft\SDLCraft\Libs\SDL2-2.0.7\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Iceklue\Documents\_Github\C++\SDL\SDLCraft\SDLCraft\Libs\SDL2-2.0.7\lib\x86;C:\Users\Iceklue\Documents\_Github\C++\SDL\SDLCraft\SDLCraft\Libs\glew-2.1.0\lib\Release\Win32;C:\Users\bergg\Documents\Github\C++\SDL\SDLCraft\SDLCraft\Libs\glew-2.1.0\lib\Release\Win32;C:\Users\bergg\Documents\Github\C++\SDL\SDLCraft\SDLCraft\Libs\SDL2-2.0.7\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Iceklue\Documents\_Github\C++\SDL\SDLCraft\SDLCraft\Libs\SDL2-2.0.7\lib\x86;C:\Users\Iceklue\Documents\_Github\C++\SDL\SDLCraft\SDLCraft\Libs\glew-2.1.0\lib\Release\Win32;C:\Users\bergg\Documents\Github\C++\SDL\SDLCraft\SDLCraft\Libs\glew-2.1.0\lib\Release\Win32;C:\Users\bergg\Documents\Github\C++\SDL\SDLCraft\SDLCraft\Libs\SDL2-2.0.7\lib\x86;C:\Users\Marie\Documents\Github\C++\SDL\SDLCraft\SDLCraft\Libs\glew-2.1.0\lib\Release\Win32;C:\Users\Marie\Documents\Github\C++\SDL\SDLCraft\SDLCraft\Libs\SDL2-2.0.7\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;glew32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
