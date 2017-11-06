@@ -18,6 +18,7 @@
 		if(!success)
 		{
 			glGetShaderInfoLog(shaderID, 512, nullptr, infoLog);
+			std::cout << std::string(infoLog);
 			throw std::runtime_error("Unable to load a shader: " + std::string(infoLog));
 		}
 		return shaderID;

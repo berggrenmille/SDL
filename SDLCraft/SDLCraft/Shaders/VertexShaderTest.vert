@@ -6,9 +6,11 @@ layout(location = 1) in vec3 color;
 out vec3 colorV;
 
 uniform float time = 0;
+uniform vec3 velocity = vec3(0,0,0);
 
 void main(void)
 {
-	gl_Position = vec4(position.x+cos(time),position.y+ sin(time),position.z,1.0);
+	gl_Position = vec4(position.x + velocity.x, position.y,0,1.0);
+	
 	colorV = color;
 }

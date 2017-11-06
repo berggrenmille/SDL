@@ -7,6 +7,7 @@ public:
 				const std::string& FRAGMENT_FILE = "FragmentShaderTest" );
 
 	GLuint m_locTime;
+	GLuint m_locVel;
 
 protected:
 	void BindAttributes() override;

@@ -17,6 +17,6 @@ void TestShader::GetUniforms()
 {
 	UseProgram();
 	m_locTime = glGetUniformLocation(m_programID, "time");
-	StopProgram();
+	m_locVel = glGetUniformLocation(m_programID, "velocity");
 }
 
