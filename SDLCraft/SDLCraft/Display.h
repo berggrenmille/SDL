@@ -13,15 +13,15 @@ public:
 
 	SDL_Window& GetWindow() const;
 	bool IsOpen() const;
+
+	int WIDTH;
+	int HEIGHT;
+	const char* title;
 private:
 	SDL_Window* window;
 	SDL_Surface* screen;
 	// Our opengl context handle
 	SDL_GLContext windowContext;
-
-	int WIDTH;
-	int HEIGHT;
-	const char* title;
 
 	bool Initialize();
 	void SetOpenGLAttributes();

@@ -9,8 +9,8 @@ TestShader::TestShader(const std::string& VERTEX_FILE, const std::string& FRAGME
 
 void TestShader::BindAttributes()
 {
-	BindAttribute(0, "position");
-	BindAttribute(1, "color");
+	BindAttribute(0, "inPosition");
+	BindAttribute(1, "inColor");
 }
 
 void TestShader::GetUniforms()
