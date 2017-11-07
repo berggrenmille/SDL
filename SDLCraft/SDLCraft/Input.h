@@ -1,8 +1,9 @@
 namespace MolecularEngine
 {
-	extern struct Input
-	{
-		bool GetAnyKey();
-		bool ExitProgram();
-	};
+	class Input;
 }
+class MolecularEngine::Input
+{
+public:
+	static bool Test();
+};

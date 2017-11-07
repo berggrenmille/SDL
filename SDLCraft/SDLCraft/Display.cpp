@@ -83,15 +83,24 @@ void Display::SetOpenGLAttributes()
 }
 
 
-void Display::ManageEvents()
+void Display::ManageEvents(SDL_Event e)
 {
-
+	if (e.type == SDL_QUIT || (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE)) //Exit program
+		Close();
+	if (e.window.event == SDL_WINDOWEVENT_RESIZED)
+	{
+		SDL_Log("Window %d resized to %dx%d",
+			e.window.windowID, e.window.data1,
+			e.window.data2);
+		WIDTH = e.window.data1; HEIGHT = e.window.data2;
+		Resize(e.window.data1, e.window.data2);
+	}
 }
 
 void Display::Clear()
 {
 	SDL_GL_SwapWindow(window);
-	glClearColor(0, 0.0, 0.1, 1.0);
+	glClearColor(0.0f, 0.0f, 0.1f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 

@@ -5,12 +5,15 @@
 #include "Shader.h"
 #include "TestShader.h"
 #include <SDL.h>
+#include "Input.h"
+using namespace MolecularEngine;
 
 
 Application::Application(Display& display, Renderer& renderer)
 	:	m_display(display), m_renderer(renderer)
 {
 	MainLoop();
+	
 }
 
 
@@ -43,19 +46,10 @@ void Application::MainLoop() const
 		shader.UseProgram();	
 		
 		//test input
-		SDL_Event e;
+		SDL_Event e;		
 		while (SDL_PollEvent(&e) != 0)
 		{
-			if (e.type == SDL_QUIT || (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE)) //Exit program
-				m_display.Close();
-			if (e.window.event == SDL_WINDOWEVENT_RESIZED)
-			{
-				SDL_Log("Window %d resized to %dx%d",
-					e.window.windowID, e.window.data1,
-					e.window.data2);
-				m_display.WIDTH = e.window.data1; m_display.HEIGHT = e.window.data2;
-				m_display.Resize(e.window.data1, e.window.data2);
-			}
+			m_display.ManageEvents(e);
 			switch(e.type)
 			{
 				case SDL_KEYDOWN:

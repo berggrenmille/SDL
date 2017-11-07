@@ -9,7 +9,7 @@ public:
 	void Resize(int w, int h);
 	void Close();
 	void Clear();
-	void ManageEvents();
+	void ManageEvents(SDL_Event e);
 
 	SDL_Window& GetWindow() const;
 	bool IsOpen() const;

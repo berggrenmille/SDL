@@ -3,5 +3,10 @@
 
 namespace MolecularEngine
 {
+	bool Input::Test()
+	{
+		return false;
+	}
+
 
 }
