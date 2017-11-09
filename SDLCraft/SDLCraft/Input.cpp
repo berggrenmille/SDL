@@ -4,10 +4,16 @@
 namespace MolecularEngine
 {
 	bool Input::exit = false;
+	const Uint8* Input::keyboardState = NULL;
+	void Input::UpdateState()
+	{
+		keyboardState = SDL_GetKeyboardState(NULL);
+	}
+
 
 	bool Input::GetKeyDown(SDL_Keycode key)
 	{
-		if (key == SDLK_ESCAPE)
+		if(keyboardState[key])
 			return true;
 		else
 			return false;

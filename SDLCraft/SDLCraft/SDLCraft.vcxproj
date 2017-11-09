@@ -176,6 +176,7 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelLoader.cpp" />
+    <ClCompile Include="MolecularEngine.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="SDLCraft.cpp" />
     <ClCompile Include="Shader.cpp" />

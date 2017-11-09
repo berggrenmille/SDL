@@ -75,7 +75,8 @@ void Application::MainLoop() const
 					break;
 			}
 		}
-
+		Input::UpdateState();
+		std::cout << Input::GetKeyDown(SDL_SCANCODE_M);
 		shader.LoadFloat(shader.m_locTime, Time::time); //load uniform float
 		shader.LoadVector3(shader.m_locVel, vel); //Load uniform vector
 		m_renderer.Render(rect);					//Draw the shape
