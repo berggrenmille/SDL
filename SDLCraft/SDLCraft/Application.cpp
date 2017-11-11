@@ -16,15 +16,25 @@ Application::Application(Display& display, Renderer& renderer)
 	
 }
 
+void Application::ManageEvents() const
+{
+	SDL_Event e;
+	while (SDL_PollEvent(&e) != 0)
+	{
+		m_display.ManageEvents(e);
+	}
+	Input::UpdateState();
+}
+
 
 
 void Application::MainLoop() const
 {
 	std::vector<float> vertices =
 	{
-		0,0.5f,0,
-		-0.5f,-0.5f,0,
-		0.5f,-0.5f,0
+		0,0.1f,0,
+		-0.1f,-0.1f,0,
+		0.1f,-0.1f,0
 	};
 	std::vector<int> indices =
 	{
@@ -42,47 +52,25 @@ void Application::MainLoop() const
 	Vector3 vel = Vector3(0, 0, 0);
 	while (m_display.IsOpen())
 	{
-		//m_display.ManageEvents();
-		shader.UseProgram();	
-		
-		//test input
-		SDL_Event e;		
-		while (SDL_PollEvent(&e) != 0)
-		{
-			m_display.ManageEvents(e);
-			switch(e.type)
-			{
-				case SDL_KEYDOWN:
-					switch (e.key.keysym.sym)
-					{
-						case SDLK_UP:
-							vel.y += .01f;
-							break;
-						case SDLK_DOWN:
-							vel.y -= .01f;
-							break;
-						case SDLK_LEFT:
-							vel.x -= .01f;
-							break;
-						case SDLK_RIGHT:
-							vel.x += .01f;
-							break;
-						default:
-							break;
-					}
-					break;
-				default:
-					break;
-			}
-		}
-		Input::UpdateState();
-		std::cout << Input::GetKeyDown(SDL_SCANCODE_M);
-		shader.LoadFloat(shader.m_locTime, Time::time); //load uniform float
-		shader.LoadVector3(shader.m_locVel, vel); //Load uniform vector
-		m_renderer.Render(rect);					//Draw the shape
+		ManageEvents();
+
+		if(Input::GetKeyDown(SDLK_w))
+			vel.y += 1.f * Time::delta;
+		if(Input::GetKeyDown(SDLK_s))
+			vel.y -= 1.f * Time::delta;
+		if (Input::GetKeyDown(SDLK_d))
+			vel.x += 1.f * Time::delta;
+		if (Input::GetKeyDown(SDLK_a))
+			vel.x -= 1.f * Time::delta;
+
+		std::cout << Time::time << "\n";
+		shader.UseProgram();
+		shader.LoadFloat(shader.m_locTime, Time::time); //load uniform float into shader
+		shader.LoadVector3(shader.m_locVel, vel);		  //load uniform vector into shader
+		m_renderer.Render(rect);					      //Render the model
 		shader.StopProgram();
 
-		//Swap and Clear back buffer
+		//Swap buffers and Clear the back buffer
 		m_display.Clear();
 		//Update time
 		Time::Tick();

@@ -1,13 +1,13 @@
 #pragma once
-#include <SDL.h>
+#include "MolecularEngine.h"
 
-namespace Time
+class MolecularEngine::Time
 {
-
-	extern float time;
-	extern float delta;
-
-	void Tick();
-
+public:
+	static float time;
+	static float delta;
+	static void Tick();
+protected:
+	Time();
 };
 

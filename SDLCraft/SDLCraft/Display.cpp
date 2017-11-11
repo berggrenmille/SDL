@@ -61,16 +61,14 @@ bool Display::Initialize()
 
 void Display::SetOpenGLAttributes()
 {
-	// Set our OpenGL version.
-	// SDL_GL_CONTEXT_CORE gives us only the newer version, deprecated functions are disabled
+	// SDL_GL_CONTEXT_CORE disables deprecated funtions
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
-	// 3.2 is part of the modern versions of OpenGL, but most video cards whould be able to run it
+	// 3.2 is mostly modern OpenGL, the majority of video cards is able to run this
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
 
 	// Turn on double buffering with a 24bit Z buffer.
-	// You may need to change this to 16 or 32 for your system
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
 	// Print GL version
@@ -100,7 +98,7 @@ void Display::ManageEvents(SDL_Event e)
 void Display::Clear()
 {
 	SDL_GL_SwapWindow(window);
-	glClearColor(0.0f, 0.0f, 0.1f, 1.0f);
+	glClearColor(0.0f, 0.0f, 0.f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
@@ -108,6 +106,7 @@ void Display::Clear()
 void Display::Resize(int w, int h)
 {
 	glViewport(0, 0, w, h);
+	SDL_SetWindowSize(window, w, h);
 }
 
 void Display::Close()

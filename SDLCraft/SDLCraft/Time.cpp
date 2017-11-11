@@ -2,16 +2,16 @@
 #include "Time.h"
 #include <ctime>
 
-	namespace Time
+namespace MolecularEngine
+{
+	float Time::delta = 0;
+	float Time::time = 0;
+	void Time::Tick()
 	{
-		float delta = 0;
-		float time = 0;
-		void Tick()
-		{
-			auto tick_time = SDL_GetTicks() / 1000.0f;
-			delta = tick_time - time;
-			time = tick_time;
-		}
+		auto tick_time = SDL_GetTicks() / 1000.0f;
+		delta = tick_time - time;
+		time = tick_time;
 	}
+}
 
 	

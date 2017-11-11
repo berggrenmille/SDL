@@ -13,7 +13,8 @@ namespace MolecularEngine
 
 	bool Input::GetKeyDown(SDL_Keycode key)
 	{
-		if(keyboardState[key])
+		
+		if(keyboardState[SDL_GetScancodeFromKey(key)])
 			return true;
 		else
 			return false;

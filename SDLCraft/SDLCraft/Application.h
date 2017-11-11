@@ -13,5 +13,7 @@ public:
 private:
 	Display& m_display;
 	Renderer& m_renderer;
+
+	void ManageEvents() const;
 };
 
