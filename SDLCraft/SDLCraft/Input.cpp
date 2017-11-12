@@ -7,6 +7,17 @@ namespace MolecularEngine
 	const Uint8* Input::keyboardState = NULL;
 	bool Input::keyUp[SDL_NUM_SCANCODES] = {false};
 	bool Input::keyDown[SDL_NUM_SCANCODES] = {false};
+	
+	void Input::Update()
+	{
+		std::cout << " fiem";
+	}
+	void Input::Initialize()
+	{
+		
+	}
+
+
 
 	void Input::UpdateKeyState()
 	{

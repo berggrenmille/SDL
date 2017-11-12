@@ -81,7 +81,7 @@ void Display::SetOpenGLAttributes()
 }
 
 
-void Display::ManageEvents(SDL_Event e)
+void Display::UpdateEvents(SDL_Event e)
 {
 	if (e.type == SDL_QUIT || (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE)) //Exit program
 		Close();
@@ -95,7 +95,7 @@ void Display::ManageEvents(SDL_Event e)
 	}
 }
 
-void Display::Clear()
+void Display::Clear() const
 {
 	SDL_GL_SwapWindow(window);
 	glClearColor(0.0f, 0.0f, 0.f, 1.0f);
@@ -103,7 +103,7 @@ void Display::Clear()
 }
 
 
-void Display::Resize(int w, int h)
+void Display::Resize(int w, int h) const
 {
 	glViewport(0, 0, w, h);
 	SDL_SetWindowSize(window, w, h);

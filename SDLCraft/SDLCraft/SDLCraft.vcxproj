@@ -152,8 +152,9 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Application.h" />
+    <ClInclude Include="Engine.h" />
     <ClInclude Include="Display.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="FileLoader.h" />
     <ClInclude Include="GLMVectors.h" />
     <ClInclude Include="Input.h" />
@@ -163,15 +164,18 @@
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderLoader.h" />
+    <ClInclude Include="State.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="System.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TestShader.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Engine.cpp" />
     <ClCompile Include="Display.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="FileLoader.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Model.cpp" />
@@ -181,6 +185,7 @@
     <ClCompile Include="SDLCraft.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderLoader.cpp" />
+    <ClCompile Include="State.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

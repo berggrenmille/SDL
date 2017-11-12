@@ -1,8 +1,20 @@
+#pragma once
+#pragma once
 #include "MolecularEngine.h"
+#include "System.h"
 
-class MolecularEngine::Input
+///<summary>MolecularEngine's abstraction of handling input<summary>
+class MolecularEngine::Input : public System
 {
 public:
+	Input(Engine& e)
+		: System(e)
+	{
+	}
+
+	void Update() override;
+	void Initialize() override;
+
 	static void UpdateKeyState();
 	static void UpdateEventState(SDL_Event& e);
 	static bool GetKeyHold(SDL_Keycode key);
@@ -11,9 +23,7 @@ public:
 	static bool GetKeyUp(SDL_Keycode key);
 	static bool GetKeyUp();
 private:
-	Input()
-	{
-	}
+	
 	static const Uint8* keyboardState;
 	static bool keyUp[SDL_NUM_SCANCODES];
 	static bool keyDown[SDL_NUM_SCANCODES];

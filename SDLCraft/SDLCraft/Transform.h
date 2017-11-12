@@ -1,7 +1,7 @@
 #pragma once
 #include "GLMVectors.h"
 
-struct Transform
+struct Transform 
 {
 	// TODO: ADD ALL TRANSFORM FUNCTIONALITY HERE
 	Vector3 position;
@@ -10,6 +10,6 @@ struct Transform
 
 	Vector3 Forward();
 	Vector3 Up();
-	Vector3 Rigth();
+	Vector3 Right();
 };
 

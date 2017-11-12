@@ -1,6 +1,6 @@
 #pragma once
 #include "MolecularEngine.h"
-
+///<Summary>Time is responsible for simple management of time</Summary>
 class MolecularEngine::Time
 {
 public:
@@ -8,6 +8,6 @@ public:
 	static float delta;
 	static void Tick();
 protected:
-	Time();
+	Time(){};
 };
 

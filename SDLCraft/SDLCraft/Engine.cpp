@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Application.h"
+#include "Engine.h"
 #include "Time.h"
 #include "ModelLoader.h"
 #include "Shader.h"
@@ -10,27 +10,34 @@
 using namespace MolecularEngine;
 
 
-Application::Application()
+
+Engine::Engine()
 	: m_display(Display()), m_renderer(Renderer(m_display.GetWindow()))
 {
 	MainLoop();
 } 
 
 
-void Application::ManageEvents() const
+void Engine::Update() const
 {	
+	//Update events
 	SDL_Event e;
 	while (SDL_PollEvent(&e))
 	{
-		m_display.ManageEvents(e);
+		m_display.UpdateEvents(e);
 		Input::UpdateEventState(e);
 	}
 	Input::UpdateKeyState();
+
+	for (int i = 0; i<m_systems.size(); i++)
+	{
+		m_systems[i].get()->Update();
+	}
 }
 
 
 
-void Application::MainLoop() const
+void Engine::MainLoop() const
 {
 
 	std::vector<float> vertices =
@@ -57,7 +64,7 @@ void Application::MainLoop() const
 	float speed = 1.0f;
 	while (m_display.IsOpen())
 	{
-		ManageEvents();
+		Update();
 		if (Input::GetKeyDown(SDLK_UP))
 			speed += 0.1f;
 		if (Input::GetKeyDown(SDLK_DOWN))

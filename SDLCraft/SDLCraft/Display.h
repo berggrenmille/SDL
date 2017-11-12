@@ -6,10 +6,10 @@ class Display
 public:
 	Display(const char* _title = "SDL", int w = 1280, int h = 720);
 
-	void Resize(int w, int h);
-	void Close();
-	void Clear();
-	void ManageEvents(SDL_Event e);
+	void Resize(int w, int h) const;
+	
+	void Clear() const;
+	void UpdateEvents(SDL_Event e);
 
 	SDL_Window& GetWindow() const;
 	bool IsOpen() const;
@@ -24,6 +24,7 @@ private:
 	SDL_GLContext windowContext;
 
 	bool Initialize();
+	void Close();
 	void SetOpenGLAttributes();
 };
 
