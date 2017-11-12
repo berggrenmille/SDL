@@ -19,7 +19,7 @@
 		{
 			glGetShaderInfoLog(shaderID, 512, nullptr, infoLog);
 			std::cout << std::string(infoLog);
-			throw std::runtime_error("Unable to load a shader: " + std::string(infoLog));
+			throw std::runtime_error("Unable to compile a shader: " + std::string(infoLog));
 		}
 		return shaderID;
 	}
@@ -35,19 +35,22 @@
 
 	GLuint LoadShaders(const std::string& vertexShader, const std::string& fragmentShader)
 	{
+		//Get raw shader files
 		auto vertexSource = GetFileContents("Shaders/" + vertexShader + ".vert");
 		auto fragmentSource = GetFileContents("Shaders/" + fragmentShader + ".frag");
 
+		//Compile shaders
 		auto vertexShaderID = CompileShader(vertexSource.c_str(), GL_VERTEX_SHADER);
 		auto fragmentShaderID = CompileShader(fragmentSource.c_str(), GL_FRAGMENT_SHADER);
 
-		auto shaderID = LinkProgram(vertexShaderID, fragmentShaderID);
+		//Bind shaders to a program
+		auto shaderProgramID = LinkProgram(vertexShaderID, fragmentShaderID);
 
+		//Remove standalone shaders
 		glDeleteShader(vertexShaderID);
 		glDeleteShader(fragmentShaderID);
 
-		return shaderID;
-
+		return shaderProgramID;
 	}
 
 

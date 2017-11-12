@@ -5,8 +5,8 @@ Model ModelLoader::LoadToVAO(std::vector<float> positions, std::vector<int> indi
 {
 	int vaoID = CreateVAO();
 	BindIndicesBuffer(indices);
-	StoreDatainAttributeList(0, positions);
-	StoreDatainAttributeList(1, color);
+	StoreDatainAttributeArray(0, positions);
+	StoreDatainAttributeArray(1, color);
 	UnbindVAO();
 	return Model(vaoID, indices.size());
 }
@@ -25,7 +25,7 @@ void ModelLoader::UnbindVAO()
 	glBindVertexArray(0);
 }
 
-void ModelLoader::StoreDatainAttributeList(int AttribIndex, std::vector<float> data)
+void ModelLoader::StoreDatainAttributeArray(int AttribIndex, std::vector<float> data)
 {
 	GLuint vboID;
 	glGenBuffers(1, &vboID);
@@ -46,7 +46,21 @@ void ModelLoader::BindIndicesBuffer(std::vector<int> indices)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vboID);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(indices[0]), &indices[0], GL_STATIC_DRAW);
 }
-
+ModelLoader::~ModelLoader()
+{
+	Cleanup();
+}
+void ModelLoader::Cleanup()
+{
+	for (GLuint vao : vaos)
+	{
+		glDeleteVertexArrays(1,&vao);
+	}
+	for (GLuint vbo : vbos)
+	{
+		glDeleteBuffers(1, &vbo);
+	}
+}
 
 
 
