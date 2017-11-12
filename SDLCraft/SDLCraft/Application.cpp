@@ -6,30 +6,33 @@
 #include "TestShader.h"
 #include <SDL.h>
 #include "Input.h"
+#include <thread>
 using namespace MolecularEngine;
 
 
-Application::Application(Display& display, Renderer& renderer)
-	:	m_display(display), m_renderer(renderer)
+Application::Application()
+	: m_display(Display()), m_renderer(Renderer(m_display.GetWindow()))
 {
 	MainLoop();
-	
-}
+} 
+
 
 void Application::ManageEvents() const
-{
+{	
 	SDL_Event e;
-	while (SDL_PollEvent(&e) != 0)
+	while (SDL_PollEvent(&e))
 	{
 		m_display.ManageEvents(e);
+		Input::UpdateEventState(e);
 	}
-	Input::UpdateState();
+	Input::UpdateKeyState();
 }
 
 
 
 void Application::MainLoop() const
 {
+
 	std::vector<float> vertices =
 	{
 		0,0.1f,0,
@@ -46,24 +49,28 @@ void Application::MainLoop() const
 		0,1.0f,1.0f,
 		0.5f,0,1.0f
 	};
+
 	ModelLoader mLoader;
 	Model rect = mLoader.LoadToVAO(vertices, indices, color);
 	TestShader shader = TestShader();
 	Vector3 vel = Vector3(0, 0, 0);
+	float speed = 1.0f;
 	while (m_display.IsOpen())
 	{
 		ManageEvents();
-
-		if(Input::GetKeyDown(SDLK_w))
-			vel.y += 1.f * Time::delta;
-		if(Input::GetKeyDown(SDLK_s))
-			vel.y -= 1.f * Time::delta;
-		if (Input::GetKeyDown(SDLK_d))
-			vel.x += 1.f * Time::delta;
-		if (Input::GetKeyDown(SDLK_a))
-			vel.x -= 1.f * Time::delta;
-
-		std::cout << Time::time << "\n";
+		if (Input::GetKeyDown(SDLK_UP))
+			speed += 0.1f;
+		if (Input::GetKeyDown(SDLK_DOWN))
+			speed -= 0.1f;
+		if(Input::GetKeyHold(SDLK_w))
+			vel.y += speed * Time::delta;
+		if(Input::GetKeyHold(SDLK_s))
+			vel.y -= speed * Time::delta;
+		if (Input::GetKeyHold(SDLK_d))
+			vel.x += speed * Time::delta;
+		if (Input::GetKeyHold(SDLK_a))
+			vel.x -= speed * Time::delta;
+		
 		shader.UseProgram();
 		shader.LoadFloat(shader.m_locTime, Time::time); //load uniform float into shader
 		shader.LoadVector3(shader.m_locVel, vel);		  //load uniform vector into shader

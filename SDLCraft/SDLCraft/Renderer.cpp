@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Renderer.h"
 #include <GL/glew.h>
+#include <SDL.h>
 
 
 Renderer::Renderer(SDL_Window& window)
