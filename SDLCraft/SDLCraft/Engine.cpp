@@ -11,14 +11,14 @@
 #include <thread>
 
 using namespace MolecularEngine;
-std::unique_ptr<Display> m_display;
+std::unique_ptr<Display&> m_display;
 Engine::Engine()
 {
 	std::unique_ptr<System> inputSystem(new Input(*this));
 	std::unique_ptr<System> displaySystem(new Display(*this));
 	m_systems.push_back(std::move(displaySystem));
 	m_systems.push_back(std::move(inputSystem));
-	m_display = std::make_unique<Display>(*(Display*)m_systems[1].get());
+	m_display = std::make_unique<Display&>(*(Display*)m_systems[1].get()); //FIX
 	for (unsigned int i = 0; i < m_systems.size(); i++)
 	{
 		m_systems[i]->Initialize();

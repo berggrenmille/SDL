@@ -19,7 +19,7 @@ public:
 	virtual void Initialize() override;
 	virtual void SendMessage(Message msg) override;
 	static bool exit;
-	static bool ready;
+	
 	static void UpdateKeyState();
 	static void UpdateEventState(SDL_Event& e);
 	static bool GetKeyHold(SDL_Keycode key);
