@@ -1,9 +1,8 @@
 #pragma once
-#include "Display.h"
-#include "Renderer.h"
+
 #include "System.h"
-#include "Input.h"
 #include "Message.h"
+#include "Display.h"
 
 class Engine
 {
@@ -16,8 +15,6 @@ private:
 	void MainLoop() const;
 	void Update() const;
 
-	Display& m_display;
-	Renderer& m_renderer;
 
 	std::vector<std::unique_ptr<System>> m_systems;
 };

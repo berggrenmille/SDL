@@ -6,14 +6,23 @@
 #include "TestShader.h"
 #include <SDL.h>
 #include "Input.h"
+#include "Display.h"
+#include "Renderer.h"
+#include <thread>
 
 using namespace MolecularEngine;
-
+std::unique_ptr<Display> m_display;
 Engine::Engine()
-	: m_display(Display()), m_renderer(Renderer(m_display.GetWindow()))
 {
 	std::unique_ptr<System> inputSystem(new Input(*this));
+	std::unique_ptr<System> displaySystem(new Display(*this));
+	m_systems.push_back(std::move(displaySystem));
 	m_systems.push_back(std::move(inputSystem));
+	m_display = std::make_unique<Display>(*(Display*)m_systems[1].get());
+	for (unsigned int i = 0; i < m_systems.size(); i++)
+	{
+		m_systems[i]->Initialize();
+	}
 	MainLoop();
 } 
 
@@ -25,24 +34,19 @@ void Engine::SendMessage(Message msg)
 			bool* info = (bool*)msg.data;
 			if (*info == true)
 			{
-				m_display.Close();
+				m_display->Close();
 				delete info;
 			}
 			break;
-		
 	}
 }
 
 void Engine::Update() const
 {	
 	
-
-	if (m_systems.size() > 0)
+	for (unsigned int i = 0; i < m_systems.size(); i++)
 	{
-		for (int i = 0; i < m_systems.size(); i++)
-		{
-			m_systems[i].get()->Update();
-		}
+		m_systems[i]->Update();
 	}
 }
 
@@ -72,10 +76,12 @@ void Engine::MainLoop() const
 	Model rect = mLoader.LoadToVAO(vertices, indices, color);
 	TestShader shader = TestShader();
 	Vector3 vel = Vector3(0, 0, 0);
+	Renderer m_renderer(m_display->GetWindow());
 	float speed = 1.0f;
-	while (m_display.IsOpen())
+	Update();
+	while ((*(Display*)m_systems[0].get()).IsOpen())
 	{
-		Update();
+		
 		if (Input::GetKeyDown(SDLK_UP))
 			speed += 0.1f;
 		if (Input::GetKeyDown(SDLK_DOWN))
@@ -95,10 +101,11 @@ void Engine::MainLoop() const
 		m_renderer.Render(rect);					      //Render the model
 		shader.StopProgram();
 
-		//Swap buffers and Clear the back buffer
-		m_display.Clear();
 		//Update time
 		Time::Tick();
+		Update();
+		
+
 	}
 }
 

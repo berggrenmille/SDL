@@ -4,26 +4,14 @@
 #include "GL/glew.h"
 
 
-Display::Display(const char* _title, int w, int h)
-	:	WIDTH(w),HEIGHT(h),title(_title)
-{
-	if (!Initialize())
-	{
-		printf("SDL could not initialize!\n");
-	}
-	else
-	{
-		printf("SDL initialized!\n");
-	}
-}
-
 // Initialize SDL's subsystems
-bool Display::Initialize()
+void Display::Initialize()
 {
+	bool check = true;
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
 	{
 		printf("SDL could not be initialized! SDL_Error: %s\n", SDL_GetError());
-		return false;
+		check = false;
 	}
 
 	// Create window
@@ -33,7 +21,7 @@ bool Display::Initialize()
 	if (window == nullptr)
 	{
 		printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
-		return false;
+		check = false;
 	}
 
 	//Create surface
@@ -53,10 +41,25 @@ bool Display::Initialize()
 	else
 	{
 		printf("GLEW Status : %s\n", glewGetErrorString(error));
-		return false;
+		check = false;
 	}
-	glViewport(0, 0, WIDTH,HEIGHT);
-	return true;
+	glViewport(0, 0, WIDTH, HEIGHT);
+	if (!check)
+	{
+		printf("SDL could not initialize!\n");
+	}
+	else
+	{
+		printf("SDL initialized!\n");
+	}
+}
+
+void Display::SendMessage(Message msg)
+{
+}
+void Display::Update()
+{
+	Clear();
 }
 
 void Display::SetOpenGLAttributes()
@@ -96,6 +99,7 @@ void Display::SetOpenGLAttributes()
 	}
 }*/
 
+
 void Display::Clear() const
 {
 	SDL_GL_SwapWindow(window);
@@ -104,8 +108,17 @@ void Display::Clear() const
 }
 
 
-void Display::Resize(int w, int h) const
+void Display::SetWindowAttributes(char* _title, int w, int h)
 {
+	title = _title;
+	WIDTH = w;
+	HEIGHT = h;
+}
+
+void Display::Resize(int w, int h)
+{
+	WIDTH = w;
+	HEIGHT = h;
 	glViewport(0, 0, w, h);
 	SDL_SetWindowSize(window, w, h);
 }

@@ -3,6 +3,7 @@
 
 namespace MolecularEngine
 {
+	bool Input::ready = false;
 	const Uint8* Input::keyboardState = NULL;
 	bool Input::keyUp[SDL_NUM_SCANCODES] = {false};
 	bool Input::keyDown[SDL_NUM_SCANCODES] = {false};
@@ -29,7 +30,7 @@ namespace MolecularEngine
 	}
 	void Input::Initialize()
 	{
-		
+		ready = true;
 	}
 
 	void Input::SendMessage(Message msg)
@@ -62,8 +63,11 @@ namespace MolecularEngine
 
 	bool Input::GetKeyHold(SDL_Keycode key)
 	{
-		if(keyboardState[SDL_GetScancodeFromKey(key)])
-			return true;
+		if (ready)
+		{
+			if (keyboardState[SDL_GetScancodeFromKey(key)])
+				return true;
+		}
 		return false;
 	}
 	bool Input::GetKeyDown(SDL_Keycode key)

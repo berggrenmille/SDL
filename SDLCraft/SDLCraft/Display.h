@@ -1,24 +1,31 @@
 #pragma once
 #include <SDL.h>
+#include "System.h"
 
-class Display
+class Display : public System
 {
 public:
-	Display(const char* _title = "SDL", int w = 1280, int h = 720);
 
-	void Resize(int w, int h) const;
-	
+	Display(Engine& e, char* _title = "SDL", int w = 1280, int h = 720)
+		:  title(_title), WIDTH(w), HEIGHT(h), System(e)
+	{
+	}
+	void SetWindowAttributes(char* _title = "SDL", int w = 1280, int h = 720);
+
+	void Resize(int w, int h);
 	void Clear() const;
-	void UpdateEvents(SDL_Event e);
-	bool Initialize();
 	void Close();
+
+	virtual void Update() override;
+	virtual void Initialize() override;
+	virtual void SendMessage(Message msg) override;
 
 	SDL_Window& GetWindow() const;
 	bool IsOpen() const;
 
-	int WIDTH;
-	int HEIGHT;
-	const char* title;
+	int WIDTH = 1280;
+	int HEIGHT = 720;
+	char* title = "MolecularEngine";
 private:
 	SDL_Window* window;
 	SDL_Surface* screen;
