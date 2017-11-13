@@ -81,8 +81,9 @@ void Display::SetOpenGLAttributes()
 }
 
 
-void Display::UpdateEvents(SDL_Event e)
+/*void Display::UpdateEvents()
 {
+	
 	if (e.type == SDL_QUIT || (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE)) //Exit program
 		Close();
 	if (e.window.event == SDL_WINDOWEVENT_RESIZED)
@@ -93,7 +94,7 @@ void Display::UpdateEvents(SDL_Event e)
 		WIDTH = e.window.data1; HEIGHT = e.window.data2;
 		Resize(e.window.data1, e.window.data2);
 	}
-}
+}*/
 
 void Display::Clear() const
 {

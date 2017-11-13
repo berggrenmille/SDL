@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "Input.h"
-#include <mutex>
 
 namespace MolecularEngine
 {
@@ -10,11 +9,32 @@ namespace MolecularEngine
 	
 	void Input::Update()
 	{
-		std::cout << " fiem";
+		//Update events
+		SDL_Event e;
+		while (SDL_PollEvent(&e))
+		{
+			if (e.type == SDL_QUIT || (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE)) //Exit program
+				m_engine.SendMessage(Message(1, 0 ,(void*)new bool(true)));
+			if (e.window.event == SDL_WINDOWEVENT_RESIZED)
+			{
+				/*SDL_Log("Window %d resized to %dx%d",
+					e.window.windowID, e.window.data1,
+					e.window.data2);
+				WIDTH = e.window.data1; HEIGHT = e.window.data2;
+				Resize(e.window.data1, e.window.data2);*/
+			}
+			Input::UpdateEventState(e);
+		}
+		Input::UpdateKeyState();
 	}
 	void Input::Initialize()
 	{
 		
+	}
+
+	void Input::SendMessage(Message msg)
+	{
+
 	}
 
 

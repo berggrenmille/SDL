@@ -11,13 +11,12 @@ using namespace MolecularEngine;
 
 int main(int argc, char* args[])
 {
-	
 	Engine engine = Engine();
-
 
 	return 0;
 
 }
+
 //NOTE: This is a way to "cheat with sdl built-in api for threads" 
 /*SDL_THREAD t1 = SDL_CreateThread(StaticTestFunc, "InouThread", this)
  *

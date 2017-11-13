@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 #include "MolecularEngine.h"
 #include "System.h"
 
@@ -11,9 +10,15 @@ public:
 		: System(e)
 	{
 	}
+	~Input()
+	{
+		
+	}
 
-	void Update() override;
-	void Initialize() override;
+	virtual void Update() override;
+	virtual void Initialize() override;
+	virtual void SendMessage(Message msg) override;
+	static bool exit;
 
 	static void UpdateKeyState();
 	static void UpdateEventState(SDL_Event& e);

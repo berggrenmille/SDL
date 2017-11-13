@@ -10,6 +10,8 @@ public:
 	
 	void Clear() const;
 	void UpdateEvents(SDL_Event e);
+	bool Initialize();
+	void Close();
 
 	SDL_Window& GetWindow() const;
 	bool IsOpen() const;
@@ -23,8 +25,7 @@ private:
 	// Our opengl context handle
 	SDL_GLContext windowContext;
 
-	bool Initialize();
-	void Close();
+	
 	void SetOpenGLAttributes();
 };
 

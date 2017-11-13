@@ -6,32 +6,43 @@
 #include "TestShader.h"
 #include <SDL.h>
 #include "Input.h"
-#include <thread>
+
 using namespace MolecularEngine;
-
-
 
 Engine::Engine()
 	: m_display(Display()), m_renderer(Renderer(m_display.GetWindow()))
 {
+	std::unique_ptr<System> inputSystem(new Input(*this));
+	m_systems.push_back(std::move(inputSystem));
 	MainLoop();
 } 
 
+void Engine::SendMessage(Message msg)
+{
+	switch (msg.dataID)
+	{
+		case 0:
+			bool* info = (bool*)msg.data;
+			if (*info == true)
+			{
+				m_display.Close();
+				delete info;
+			}
+			break;
+		
+	}
+}
 
 void Engine::Update() const
 {	
-	//Update events
-	SDL_Event e;
-	while (SDL_PollEvent(&e))
-	{
-		m_display.UpdateEvents(e);
-		Input::UpdateEventState(e);
-	}
-	Input::UpdateKeyState();
+	
 
-	for (int i = 0; i<m_systems.size(); i++)
+	if (m_systems.size() > 0)
 	{
-		m_systems[i].get()->Update();
+		for (int i = 0; i < m_systems.size(); i++)
+		{
+			m_systems[i].get()->Update();
+		}
 	}
 }
 

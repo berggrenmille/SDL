@@ -1,14 +1,16 @@
 #pragma once
 #include "Display.h"
 #include "Renderer.h"
-#include <thread>
 #include "System.h"
 #include "Input.h"
+#include "Message.h"
 
 class Engine
 {
 public:
 	Engine();
+
+	void SendMessage(Message msg);
 private:
 	bool running = true;
 	void MainLoop() const;
@@ -17,11 +19,5 @@ private:
 	Display& m_display;
 	Renderer& m_renderer;
 
-	std::vector<std::unique_ptr<System>> m_systems = 
-	{	std::make_unique<System>(MolecularEngine::Input(*this))
-	};
-	
-
-	
+	std::vector<std::unique_ptr<System>> m_systems;
 };
-
