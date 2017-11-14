@@ -3,7 +3,7 @@
 
 namespace MolecularEngine
 {
-	const Uint8* Input::keyboardState = NULL;
+	const Uint8* Input::keyboardState = nullptr;
 	bool Input::keyUp[SDL_NUM_SCANCODES] = {false};
 	bool Input::keyDown[SDL_NUM_SCANCODES] = {false};
 	

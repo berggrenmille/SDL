@@ -15,13 +15,10 @@ public:
 
 	Engine& m_engine;
 protected:
-	System(Engine& e);
+	System(Engine& e)
+		: m_engine(e)
+	{};
 };
-#include "Engine.h"
 
-inline System::System(Engine& e)
-	: m_engine(e)
-{
-	
-};
+#include "Engine.h"
 

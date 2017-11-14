@@ -6,30 +6,52 @@
 #include "TestShader.h"
 #include <SDL.h>
 #include "Input.h"
-#include "Display.h"
+
 #include "Renderer.h"
 #include <thread>
 
 using namespace MolecularEngine;
-std::unique_ptr<Display&> m_display;
+
+
 Engine::Engine()
 {
-	std::unique_ptr<System> inputSystem(new Input(*this));
-	std::unique_ptr<System> displaySystem(new Display(*this));
-	m_systems.push_back(std::move(displaySystem));
-	m_systems.push_back(std::move(inputSystem));
-	m_display = std::make_unique<Display&>(*(Display*)m_systems[1].get()); //FIX
+	System* inputSystem(new Input(*this));
+	System* displaySystem(new Display(*this));
+	m_systems.push_back(displaySystem);
+	m_systems.push_back(inputSystem);
+	m_display = (Display*)m_systems[0]; 
+	//oo rule o three
+	//Assignment
 	for (unsigned int i = 0; i < m_systems.size(); i++)
-	{
 		m_systems[i]->Initialize();
-	}
 	MainLoop();
 } 
+
+bool Engine::CreateSystem(System* _system, int flag)
+{
+	if (_system == nullptr)
+		return false;
+	m_systems.push_back(_system);
+	if (flag & 1 << 0)
+	{
+		//subsystem = observer of messagebus
+	}
+	if (flag & 1 << 1)
+	{
+		//subsystem = updatable
+	}
+	if (flag & 1 << 2)
+	{
+		//subsystem = initializable
+	}
+	return true;
+}
 
 void Engine::SendMessage(Message msg)
 {
 	switch (msg.dataID)
 	{
+		default:
 		case 0:
 			bool* info = (bool*)msg.data;
 			if (*info == true)
@@ -38,12 +60,13 @@ void Engine::SendMessage(Message msg)
 				delete info;
 			}
 			break;
+		
+			
 	}
 }
 
 void Engine::Update() const
 {	
-	
 	for (unsigned int i = 0; i < m_systems.size(); i++)
 	{
 		m_systems[i]->Update();
@@ -79,7 +102,7 @@ void Engine::MainLoop() const
 	Renderer m_renderer(m_display->GetWindow());
 	float speed = 1.0f;
 	Update();
-	while ((*(Display*)m_systems[0].get()).IsOpen())
+	while (m_display->IsOpen())
 	{
 		
 		if (Input::GetKeyDown(SDLK_UP))
