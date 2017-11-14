@@ -12,6 +12,16 @@ namespace MolecularEngine
 		delta = tick_time - time;
 		time = tick_time;
 	}
+
+	void Time::Update()
+	{
+		Tick();
+	}
+
+	Time::Time(Engine& e)
+		:	System(e)
+	{
+	}
 }
 
 	

@@ -23,21 +23,14 @@ namespace MolecularEngine
 				WIDTH = e.window.data1; HEIGHT = e.window.data2;
 				Resize(e.window.data1, e.window.data2);*/
 			}
-			Input::UpdateEventState(e);
+			UpdateEventState(e);
 		}
-		Input::UpdateKeyState();
-	}
-	void Input::Initialize()
-	{
-		
+		UpdateKeyState();
 	}
 
 	void Input::SendMessage(Message msg)
 	{
-
 	}
-
-
 
 	void Input::UpdateKeyState()
 	{

@@ -7,17 +7,18 @@ class System
 {
 public:
 
-	virtual void Update() = 0;
-	virtual void SendMessage(Message msg) = 0;
-	virtual void Initialize() = 0;
+	virtual void Update(){};
+	virtual void SendMessage(Message msg){};
+	virtual void Init(){};
 
 	virtual ~System() {};
 
-	Engine& m_engine;
 protected:
 	System(Engine& e)
 		: m_engine(e)
 	{};
+	Engine& m_engine;
+
 };
 
 #include "Engine.h"

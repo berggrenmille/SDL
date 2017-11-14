@@ -5,7 +5,7 @@
 
 
 // Initialize SDL's subsystems
-void Display::Initialize()
+void Display::Init()
 {
 	bool check = true;
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)

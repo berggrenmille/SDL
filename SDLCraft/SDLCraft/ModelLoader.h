@@ -3,11 +3,15 @@
 #include <vector>
 #include <GL/glew.h>
 
+
+class PrimitiveShapes;
 class ModelLoader
 {
 public:
+	ModelLoader();
 	~ModelLoader();
 	Model LoadToVAO(std::vector<float> positions, std::vector<int> indices, std::vector<float> colours);
+	
 private:
 	int CreateVAO();
 	void UnbindVAO();
@@ -18,5 +22,7 @@ private:
 	void Cleanup();
 	std::vector<GLuint> vaos;
 	std::vector<GLuint> vbos;
+
 };
 
+#include "PrimitiveShapes.h"

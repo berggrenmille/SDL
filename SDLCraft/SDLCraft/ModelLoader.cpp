@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "ModelLoader.h"
+#include "PrimitiveShapes.h"
 
 Model ModelLoader::LoadToVAO(std::vector<float> positions, std::vector<int> indices, std::vector<float> color)
 {
@@ -46,6 +47,12 @@ void ModelLoader::BindIndicesBuffer(std::vector<int> indices)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vboID);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(indices[0]), &indices[0], GL_STATIC_DRAW);
 }
+
+ModelLoader::ModelLoader()
+{
+	
+}
+
 ModelLoader::~ModelLoader()
 {
 	Cleanup();
@@ -61,6 +68,4 @@ void ModelLoader::Cleanup()
 		glDeleteBuffers(1, &vbo);
 	}
 }
-
-
 

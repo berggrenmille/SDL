@@ -16,9 +16,9 @@ public:
 	void Clear() const;
 	void Close();
 
-	virtual void Update() override;
-	virtual void Initialize() override;
-	virtual void SendMessage(Message msg) override;
+	void Update() override;
+	void Init() override;
+	void SendMessage(Message msg) override;
 
 	SDL_Window& GetWindow() const;
 	bool IsOpen() const;

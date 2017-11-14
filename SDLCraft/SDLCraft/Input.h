@@ -9,15 +9,16 @@ public:
 	Input(Engine& e)
 		: System(e)
 	{
+		
 	}
 	~Input()
 	{
 		
 	}
+	
+	void Update() override;
+	void SendMessage(Message msg) override;
 
-	virtual void Update() override;
-	virtual void Initialize() override;
-	virtual void SendMessage(Message msg) override;
 	static bool exit;
 	
 	static void UpdateKeyState();

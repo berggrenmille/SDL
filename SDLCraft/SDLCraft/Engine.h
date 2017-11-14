@@ -2,7 +2,9 @@
 
 #include "System.h"
 #include "Message.h"
-#include "Display.h"
+#include <list>
+
+
 class Display;
 
 class Engine
@@ -13,8 +15,8 @@ public:
 	void SendMessage(Message msg);
 private:
 	bool running = true;
-	void MainLoop() const;
-	void Update() const;
+	void Loop();
+	void Update();
 
 	Display* m_display = nullptr;
 
@@ -26,5 +28,15 @@ private:
 	//00000100
 
 	bool CreateSystem(System* _system, int _flag);
-	std::vector<System*> m_systems;
+	std::list<System*> m_systems;
+
+	template <typename T> 
+	T GetListElementAtIndex(std::list<T> _list, int _index)
+	{
+		std::list<T>::iterator it = _list.begin();
+		for (auto i = 0; i<_index; i++) {
+			++it;
+		}
+		return *it;
+	}
 };
