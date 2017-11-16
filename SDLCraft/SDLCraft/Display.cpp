@@ -5,13 +5,12 @@
 
 
 // Initialize SDL's subsystems
-void Display::Init()
+bool Display::Init()
 {
-	bool check = true;
 	if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
 	{
 		printf("SDL could not be initialized! SDL_Error: %s\n", SDL_GetError());
-		check = false;
+		return false;
 	}
 
 	// Create window
@@ -21,7 +20,7 @@ void Display::Init()
 	if (window == nullptr)
 	{
 		printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
-		check = false;
+		return false;
 	}
 
 	//Create surface
@@ -41,17 +40,10 @@ void Display::Init()
 	else
 	{
 		printf("GLEW Status : %s\n", glewGetErrorString(error));
-		check = false;
+		return false;
 	}
 	glViewport(0, 0, WIDTH, HEIGHT);
-	if (!check)
-	{
-		printf("SDL could not initialize!\n");
-	}
-	else
-	{
-		printf("SDL initialized!\n");
-	}
+	return true;
 }
 
 void Display::SendMessage(Message msg)

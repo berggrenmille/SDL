@@ -9,7 +9,7 @@ public:
 
 	virtual void Update(){};
 	virtual void SendMessage(Message msg){};
-	virtual void Init(){};
+	virtual bool Init() { return true; };
 
 	virtual ~System() {};
 

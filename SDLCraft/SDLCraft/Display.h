@@ -17,7 +17,7 @@ public:
 	void Close();
 
 	void Update() override;
-	void Init() override;
+	bool Init() override;
 	void SendMessage(Message msg) override;
 
 	SDL_Window& GetWindow() const;

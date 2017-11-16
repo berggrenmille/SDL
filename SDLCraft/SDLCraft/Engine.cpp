@@ -16,10 +16,13 @@ using namespace MolecularEngine;
 
 Engine::Engine()
 {
-	CreateSystem(new Display(*this), 1 << 0 | 1 << 1 | 1 << 2);
-	CreateSystem(new Input(*this), 1 << 0 | 1 << 1);
-	CreateSystem(new Time(*this), 1 << 1);
+	Display disSystem = Display(*this);
+	Input inputSystem = Input(*this);
+	Time timeSystem = Time(*this);
 
+	CreateSystem(&disSystem, F_INITIALIZABLE | F_UPDATABLE | F_UPDATABLE);
+	CreateSystem(&inputSystem, F_MESSAGE_OBSERVER | F_UPDATABLE);
+	CreateSystem(&timeSystem, F_UPDATABLE);
 	m_display = reinterpret_cast<Display*>(GetListElementAtIndex(m_systems,0));
 	Loop();
 } 
@@ -28,8 +31,13 @@ bool Engine::CreateSystem(System* _system, int flag)
 {
 	if (_system == nullptr)
 		return false;
-	if ((flag & 1 << 2) > 0)
-		_system->Init();
+	if ((flag & F_INITIALIZABLE) > 0)
+	{
+		if (!_system->Init()) {}
+			//Something went wrong
+			
+	}
+		
 	m_systems.push_back(_system);
 	if (flag & 1 << 0)
 	{
