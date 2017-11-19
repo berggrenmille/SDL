@@ -27,11 +27,13 @@ public:
 	int HEIGHT = 720;
 	char* title = "MolecularEngine";
 private:
+	
+	// Our SDL window
 	SDL_Window* window;
+	// Our SDL screen
 	SDL_Surface* screen;
-	// Our opengl context handle
+	// Our OpenGL context handle
 	SDL_GLContext windowContext;
-
 	
 	void SetOpenGLAttributes();
 };
