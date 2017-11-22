@@ -134,4 +134,12 @@ bool Display::IsOpen() const
 	return window != nullptr;
 }
 
+void Display::OnNotify(Message msg)
+{
+	if (msg.dataID = 10)
+	{
+		Update();
+	}
+}
+
 

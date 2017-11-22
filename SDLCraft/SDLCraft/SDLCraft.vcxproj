@@ -158,10 +158,14 @@
     <ClInclude Include="FileLoader.h" />
     <ClInclude Include="GLMVectors.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="ListHelper.h" />
     <ClInclude Include="Message.h" />
+    <ClInclude Include="MessageBusMaster.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="ModelLoader.h" />
     <ClInclude Include="MolecularEngine.h" />
+    <ClInclude Include="Observer.h" />
+    <ClInclude Include="ObserverMaster.h" />
     <ClInclude Include="PrimitiveShapes.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Shader.h" />
@@ -181,9 +185,11 @@
     <ClCompile Include="FileLoader.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Message.cpp" />
+    <ClCompile Include="MessageBusMaster.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelLoader.cpp" />
     <ClCompile Include="MolecularEngine.cpp" />
+    <ClCompile Include="ObserverMaster.cpp" />
     <ClCompile Include="PrimitiveShapes.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="SDLCraft.cpp" />

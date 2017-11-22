@@ -2,16 +2,15 @@
 
 struct Message
 {
-	Message();
-	Message(int toID, int dataID, void* params = NULL);
+	Message(int _msgID, int _dataID, void* _data = nullptr);
 	~Message();
-	int toID;
+	int msgID;
 	int dataID;
 	void* data;
 
 	bool* GetBool();
 	int* GetInt();
 	double* GetDouble();
-	char* GetChar;
+	char* GetChar();
 
 };

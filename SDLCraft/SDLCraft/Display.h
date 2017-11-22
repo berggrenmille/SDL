@@ -2,7 +2,7 @@
 #include <SDL.h>
 #include "System.h"
 
-class Display : public System
+class Display : public System, public Observer
 {
 public:
 
@@ -34,5 +34,7 @@ private:
 
 	
 	void SetOpenGLAttributes();
+
+	void OnNotify(Message msg) override;
 };
 

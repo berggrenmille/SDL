@@ -11,6 +11,7 @@
 #include <thread>
 #include "PrimitiveShapes.h"
 
+using namespace ListHelper;
 using namespace MolecularEngine;
 
 
@@ -27,30 +28,30 @@ Engine::Engine()
 	Loop();
 } 
 
-bool Engine::CreateSystem(System* _system, int flag)
+bool Engine::CreateSystem(System* _system, int _flag)
 {
 	if (_system == nullptr)
 		return false;
-	if ((flag & F_INITIALIZABLE) > 0)
+	if ((_flag & F_INITIALIZABLE) > 0)
 	{
 		if (!_system->Init()) {}
 			//Something went wrong
-			
 	}
 		
-	m_systems.push_back(_system);
-	if (flag & 1 << 0)
+	if (_flag & 1 << 0)
 	{
+		m_messageBus.Subscribe(reinterpret_cast<Observer*>(_system));
 		//subsystem = observer of messagebus
 	}
-	if (flag & 1 << 1)
+	if (_flag & 1 << 1)
 	{
 		//subsystem = updatable
 	}
+	m_systems.push_back(_system);
 	return true;
 }
 
-void Engine::SendMessage(Message msg)
+/*void Engine::SendMessage(Message msg)
 {
 	switch (msg.dataID)
 	{
@@ -66,14 +67,15 @@ void Engine::SendMessage(Message msg)
 		
 			
 	}
-}
+}*/
 
 void Engine::Update() 
 {	
-	for (unsigned int i = 0; i < m_systems.size(); i++)
+	/*for (unsigned int i = 0; i < m_systems.size(); i++)
 	{
 		GetListElementAtIndex(m_systems, i)->Update();
-	}
+	}*/
+	m_messageBus.Notify(Message(-1, 10, nullptr));
 }
 
 

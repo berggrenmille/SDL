@@ -1,7 +1,8 @@
 #pragma once
 
 #include "System.h"
-#include "Message.h"
+
+#include "MessageBusMaster.h"
 #include <list>
 
 
@@ -11,8 +12,6 @@ class Engine
 {
 public:
 	Engine();
-
-	void SendMessage(Message msg);
 private:
 	bool running = true;
 	void Loop();
@@ -29,14 +28,5 @@ private:
 
 	bool CreateSystem(System* _system, int _flag);
 	std::list<System*> m_systems;
-		
-	template <typename T>
-	T GetListElementAtIndex(std::list<T> _list, int _index)
-	{
-		std::list<T>::iterator it = _list.begin();
-		for (auto i = 0; i < _index; i++) {
-			++it;
-		}
-		return *it;
-	}
+	MessageBusMaster m_messageBus;
 };
